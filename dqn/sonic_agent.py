@@ -1,9 +1,9 @@
-from keras.optimizers import Adam
 from keras.layers import *
 from keras.models import Sequential
-
+from keras.optimizers import Adam
 from runner import GymRunner
-from qlearning_agent import QLearningAgent
+
+from dqn.qlearning_agent import QLearningAgent
 
 
 class Agent(QLearningAgent):
@@ -39,7 +39,7 @@ class Agent(QLearningAgent):
 
         model.add(Dense(256, activation='relu'))
 
-        model.add(Reshape((1, 256)))
+        model.add(Reshape((256, 1)))
 
         model.add(LSTM(256))
 

@@ -12,11 +12,11 @@ class QLearningAgent:
         self.epsilon = 1.0  # exploration rate
         self.epsilon_decay = 0.995  # the decay of epsilon after each training batch
         self.epsilon_min = 0.1  # the minimum exploration rate permissible
-        self.batch_size = 32  # maximum size of the batches sampled from memory
+        self.batch_size = 5000  # maximum size of the batches sampled from memory
 
         # agent state
         self.model = self.build_model()
-        self.memory = deque(maxlen=2000)
+        self.memory = deque(maxlen=20000)
 
     @abc.abstractmethod
     def build_model(self):
@@ -35,7 +35,10 @@ class QLearningAgent:
         if len(self.memory) < self.batch_size:
             return 0
 
+        #TODO: MODIFICAR PARA QUE SOLO LLAME UNA VEZ AL FIT Y NO USE UN BATCH SIZE DE 1
         minibatch = random.sample(self.memory, self.batch_size)
+        states = []
+        targets_f = []
         for state, action, reward, next_state, done in minibatch:
             state = np.expand_dims(np.array(state), 0)
             next_state = np.expand_dims(np.array(next_state), 0)
@@ -45,7 +48,9 @@ class QLearningAgent:
                           np.amax(np.eye(self.action_size, dtype=int)[np.argmax(self.model.predict(next_state)[0])]))
             target_f = self.model.predict(state)
             target_f[0][np.argmax(action)] = target
-            self.model.fit(state, target_f, epochs=1, verbose=0)
+            states.append(state[0])
+            targets_f.append(target_f[0])
+        self.model.fit(state, target_f, epochs=3, verbose=1)
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
