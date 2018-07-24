@@ -9,7 +9,3 @@ RUN apt-get update && \
 RUN pip install -r requirements.txt
 
 RUN cp ./rom.md /usr/local/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/
-
-SHELL ["/bin/bash", "-c"]
-
-CMD ["python", "ppo/ppo_agent.py"]
