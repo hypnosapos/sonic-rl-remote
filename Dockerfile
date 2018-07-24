@@ -3,7 +3,7 @@ FROM tensorflow/tensorflow:1.9.0-gpu-py3
 ADD . ./
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libopenmpi-dev zlib1g-dev cmake libgtk2.0-dev git --yes && \
+    apt-get install -y --no-install-recommends libopenmpi-dev cmake git --yes && \
     apt-get clean
 
 RUN pip install -r requirements.txt
