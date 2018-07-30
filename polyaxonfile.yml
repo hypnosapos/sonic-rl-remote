@@ -3,6 +3,12 @@ version: 1
 
 kind: experiment
 
+environment:
+  resources:
+    gpu:
+      requests: 1
+      limits: 1
+
 build:
   image: tensorflow/tensorflow:1.9.0-gpu-py3
   build_steps:
