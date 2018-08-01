@@ -3,5 +3,12 @@ gym-retro==0.5.6
 Keras==2.2.0
 Keras-Applications==1.0.2
 Keras-Preprocessing==1.0.1
-tensorflow==1.9.0
-git+https://github.com/openai/baselines.git@master
+tensorflow-gpu==1.9.0
+joblib
+tqdm
+zmq
+dill
+progressbar2
+cloudpickle
+opencv-python
+mpi4py

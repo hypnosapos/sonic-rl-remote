@@ -12,8 +12,10 @@ environment:
 build:
   image: tensorflow/tensorflow:1.9.0-gpu-py3
   build_steps:
-  - apt-get update && apt-get install -y --no-install-recommends libopenmpi-dev cmake git --yes && apt-get clean
-  - pip install --no-cache-dir -r requirements.txt && pip install --no-cache-dir -U polyaxon-helper
+  - apt-get update && apt-get install -y --no-install-recommends libopenmpi-dev cmake zlib1g-dev git --yes && apt-get clean
+  - pip install --no-cache-dir -r requirements.txt
+  - pip install --no-cache-dir --no-deps git+https://github.com/openai/baselines.git@master
+  - pip install --no-cache-dir polyaxon-helper
   - ln -s /code/rom.md /usr/local/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/rom.md
 
 run:

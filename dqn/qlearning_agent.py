@@ -3,6 +3,7 @@ import numpy as np
 import random
 import abc
 
+
 class QLearningAgent:
     def __init__(self, action_size):
         self.action_size = action_size
@@ -54,8 +55,3 @@ class QLearningAgent:
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
-
-
-
-
-
