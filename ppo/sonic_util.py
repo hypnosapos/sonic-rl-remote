@@ -6,7 +6,7 @@ import gym
 import numpy as np
 import retro
 
-#from baselines.common.atari_wrappers import WarpFrame, FrameStack
+from baselines.common.atari_wrappers import WarpFrame, FrameStack
 
 
 def make_env(stack=True, scale_rew=True):
@@ -15,13 +15,14 @@ def make_env(stack=True, scale_rew=True):
     """
     env = retro.make(game='SonicTheHedgehog-Genesis', state='GreenHillZone.Act1')
     env = SonicDiscretizer(env)
-    '''
+
     if scale_rew:
         env = RewardScaler(env)
     env = WarpFrame(env)
+
     if stack:
         env = FrameStack(env, 4)
-    '''
+
     return env
 
 
