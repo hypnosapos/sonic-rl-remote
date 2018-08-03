@@ -12,7 +12,8 @@ environment:
 build:
   image: tensorflow/tensorflow:1.9.0-gpu-py3
   build_steps:
-  - apt-get update && apt-get install -y --no-install-recommends libopenmpi-dev cmake zlib1g-dev git --yes && apt-get clean
+  - apt-get update && apt-get install -y --no-install-recommends libopenmpi-dev cmake zlib1g-dev libgtk2.0-dev git --yes && apt-get clean
+  - rm /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
   - pip install --no-cache-dir -r requirements.txt
   - pip install --no-cache-dir --no-deps git+https://github.com/openai/baselines.git@master
   - pip install --no-cache-dir polyaxon-helper

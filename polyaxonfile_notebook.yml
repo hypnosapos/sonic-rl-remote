@@ -1,0 +1,9 @@
+---
+version: 1
+
+kind: notebook
+
+build:
+  image: tensorflow/tensorflow:1.9.0-py3
+  build_steps:
+    - pip3 install jupyter
