@@ -1,4 +1,4 @@
-# SONIC RL AGENT
+# Sonic RL Agent
 
 Requirements for Mac:
 
@@ -6,12 +6,14 @@ Requirements for Mac:
 $ brew install cmake openmpi lua51
 ```
 
-Train a model by docker container:
+Train model by docker container on localhost:
 
 ```sh
 $ docker run -it -v <your_path>/rom.md:/usr/local/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/rom.md \
   hypnosapos/sonic-rl-remote:latest python ppo/ppo_agent.py
 ```
+
+## Training experiments within Polyaxon
 
 Launch experiment with polyaxon:
 
@@ -30,3 +32,5 @@ $ polyaxon init sonic
 ## Train Sonic experiment
 $ polyaxon run -f polyaxonfile.yml -u
 ```
+
+## Run model
