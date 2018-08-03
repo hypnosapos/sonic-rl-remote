@@ -18,10 +18,15 @@ Launch experiment with polyaxon:
 ```bash
 $ source .venv/bin/activate
 $ pip install polyaxon-cli
+
+## These steps are required only for bootstrap
 $ polyaxon config host=<polyaxon-api-svc-ip>
 $ polyaxon login --username=root --password=<xxxxx>
+
+## These steps are required only if sonic project doesn't exist yet
 $ polyaxon project create sonic
 $ polyaxon init sonic
 
+## Train Sonic experiment
 $ polyaxon run -f polyaxonfile.yml -u
 ```
