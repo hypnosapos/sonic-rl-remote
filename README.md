@@ -22,7 +22,7 @@ $ source .venv/bin/activate
 $ pip install polyaxon-cli
 
 ## These steps are required only for bootstrap
-$ polyaxon config set host=<polyaxon-api-svc-ip>
+$ polyaxon config set --host=<polyaxon-api-svc-ip>
 $ polyaxon login --username=root --password=<xxxxx>
 
 ## These steps are required only if sonic project doesn't exist yet
