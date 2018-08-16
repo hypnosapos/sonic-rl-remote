@@ -31,3 +31,8 @@ Sega Classics.zip
 #rom.md
 
 
+# Model saved
+ppo/model_saved
+
+# Baseline
+baselines

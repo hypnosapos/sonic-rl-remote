@@ -10,8 +10,7 @@ HEIGHT_SIZE = 320
 
 class GymRunner:
     def __init__(self, max_timesteps=100000):
-
-        self.env = retro.make(game='SonicTheHedgehog-Genesis', state='GreenHillZone.Act1')
+        self.env = retro.make(game='SonicTheHedgehog-Genesis', state='GreenHillZone.Act1', scenario="/Users/david.suarez/Work/i+d/sonic-rl/dqn/scenario.json")
         self.max_timesteps = max_timesteps
 
     def train(self, agent, num_episodes):

@@ -13,7 +13,7 @@ def make_env(stack=True, scale_rew=True):
     """
     Create an environment with some standard wrappers.
     """
-    env = retro.make(game='SonicTheHedgehog-Genesis', state='GreenHillZone.Act1')
+    env = retro.make(game='SonicTheHedgehog-Genesis', state='GreenHillZone.Act1', scenario="./scenario.json")
     env = SonicDiscretizer(env)
 
     if scale_rew:
