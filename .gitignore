@@ -1,38 +1,16 @@
 .*
-!.dockerignore
 !.gitignore
-!.polyaxonignore
 
-### Python
 __pycache__/
 *.py[cod]
 *$py.class
 env/
 build/
-develop-eggs/
+*-eggs/
 dist/
 eggs/
 parts/
 sdist/
 *.egg-info/
-.installed.cfg
-*.egg
 
-# C extensions
-*.so
-
-
-# IPython Notebook
-.ipynb_checkpoints
-
-# Sega ROM
-Sega Classics
-Sega Classics.zip
-#rom.md
-
-
-# Model saved
-ppo/model_saved
-
-# Baseline
-baselines
+rom.md

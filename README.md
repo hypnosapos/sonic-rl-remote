@@ -1,6 +1,6 @@
 # Sonic RL Agent
 
-Requirements for Mac:
+Requirements for training models on Mac:
 
 ```sh
 $ brew install cmake openmpi lua51
@@ -15,22 +15,27 @@ $ docker run -it -v <your_path>/rom.md:/usr/local/lib/python3.5/dist-packages/re
 
 ## Training experiments within Polyaxon
 
-Launch experiment with polyaxon:
+We should have a polyaxon installation on any kubernetes cluster.
+
+Run experiments with polyaxon:
 
 ```bash
-$ source .venv/bin/activate
+$ python -m venv .venv
 $ pip install polyaxon-cli
 
 ## These steps are required only for bootstrap
 $ polyaxon config set --host=<polyaxon-api-svc-ip>
-$ polyaxon login --username=root --password=<xxxxx>
+$ polyaxon login --username=<username> --password=<xxxxx>
 
 ## These steps are required only if sonic project doesn't exist yet
 $ polyaxon project create --name=sonic
 $ polyaxon init sonic
 
-## Train Sonic experiment
-$ polyaxon run -f polyaxonfile.yml -u
+## Train Sonic experiments
+$ polyaxon run -f polyaxonfile_ppo.yml -u
+$ polyaxon run -f polyaxonfile_dqn.yml -u
 ```
 
 ## Run model
+
+WIP
