@@ -9,6 +9,9 @@ environment:
       requests: 1
       limits: 1
 
+declarations:
+  rl_algorithm: dqn
+
 build:
   image: tensorflow/tensorflow:1.9.0-gpu-py3
   build_steps:
@@ -19,4 +22,4 @@ build:
   - ln -s /code/rom.md /usr/local/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/rom.md
 
 run:
-  cmd: python dqn/dqn_agent.py
+  cmd: python {{ rl_algorithm }}/{{ rl_algorithm }}_agent.py

@@ -14,7 +14,7 @@ $ source .venv/bin/activate
 $ pip install -r requirements.txt
 $ cp rom.md .venv/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/rom.md
 $ python ppo/ppo_agent.py
-$ python dqn/qlearning_agent.py
+$ python dqn/dqn_agent.py
 ```
 
 Train model by docker container on localhost:
