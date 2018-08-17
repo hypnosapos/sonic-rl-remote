@@ -1,5 +1,6 @@
 .*
 !.gitignore
+!.polyaxonignore
 
 __pycache__/
 *.py[cod]

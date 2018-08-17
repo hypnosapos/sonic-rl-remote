@@ -10,9 +10,6 @@ WIDTH_SIZE = 224
 HEIGHT_SIZE = 320
 
 
-LOG = logging.getLogger(__name__)
-
-
 class GymRunner:
     def __init__(self, max_timesteps=100000):
         self.env = retro.make(game='SonicTheHedgehog-Genesis',
@@ -24,7 +21,6 @@ class GymRunner:
         self.run(agent, num_episodes, do_train=True)
 
     def run(self, agent, num_episodes, do_train=False, render=False):
-
         for episode in range(num_episodes):
 
             state = self.env.reset()
@@ -79,7 +75,7 @@ class GymRunner:
             if do_train:
                 agent.replay()
 
-            LOG.info("episode: {}/{} | score: {} | e: {:.3f}".format(
+            print("episode: {}/{} | score: {} | e: {:.3f}".format(
                 episode + 1, num_episodes, total_reward, agent.epsilon))
 
     def translate_action(self, network_output):
