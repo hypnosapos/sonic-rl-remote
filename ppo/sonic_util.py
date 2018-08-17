@@ -5,6 +5,7 @@ Environments and wrappers for Sonic training.
 import gym
 import numpy as np
 import retro
+import os
 
 from baselines.common.atari_wrappers import WarpFrame, FrameStack
 
@@ -13,7 +14,10 @@ def make_env(stack=True, scale_rew=True):
     """
     Create an environment with some standard wrappers.
     """
-    env = retro.make(game='SonicTheHedgehog-Genesis', state='GreenHillZone.Act1', scenario="./scenario.json")
+    env = retro.make(
+        game='SonicTheHedgehog-Genesis',
+        state='GreenHillZone.Act1',
+        scenario=os.path.abspath(os.path.join(os.path.dirname(__file__), "scenario.json")))
     env = SonicDiscretizer(env)
 
     if scale_rew:
@@ -47,6 +51,7 @@ class SonicDiscretizer(gym.ActionWrapper):
     def action(self, a): # pylint: disable=W0221
         return self._actions[a].copy()
 
+
 class RewardScaler(gym.RewardWrapper):
     """
     Bring rewards to a reasonable scale for PPO.
@@ -56,6 +61,7 @@ class RewardScaler(gym.RewardWrapper):
     """
     def reward(self, reward):
         return reward * 0.01
+
 
 class AllowBacktracking(gym.Wrapper):
     """
