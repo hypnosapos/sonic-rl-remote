@@ -1,11 +1,16 @@
+import os
 import numpy as np
 import retro
+import logging
 
 from PIL import Image
 
 N_FRAMES = 4
 WIDTH_SIZE = 224
 HEIGHT_SIZE = 320
+
+
+LOG = logging.getLogger(__name__)
 
 
 class GymRunner:
@@ -16,12 +21,17 @@ class GymRunner:
         self.max_timesteps = max_timesteps
 
     def train(self, agent, num_episodes):
-        return self.run(agent, num_episodes, do_train=True)
+        self.run(agent, num_episodes, do_train=True)
 
-    def run(self, agent, num_episodes, do_train=False):
+    def run(self, agent, num_episodes, do_train=False, render=False):
+
         for episode in range(num_episodes):
 
-            self.env.reset()
+            state = self.env.reset()
+            total_reward = 0
+
+            if render:
+                self.env.render()
 
             # Reset does not return image until first action is set.
             frame = np.zeros((WIDTH_SIZE, HEIGHT_SIZE, N_FRAMES), dtype=np.uint8)
@@ -34,11 +44,10 @@ class GymRunner:
 
             state = frames
 
-            total_reward = 0
-
             for t in range(self.max_timesteps):
 
-                self.env.render()
+                if render:
+                    self.env.render()
 
                 action = agent.select_action(state, do_train)
 
@@ -70,7 +79,7 @@ class GymRunner:
             if do_train:
                 agent.replay()
 
-            print("episode: {}/{} | score: {} | e: {:.3f}".format(
+            LOG.info("episode: {}/{} | score: {} | e: {:.3f}".format(
                 episode + 1, num_episodes, total_reward, agent.epsilon))
 
     def translate_action(self, network_output):

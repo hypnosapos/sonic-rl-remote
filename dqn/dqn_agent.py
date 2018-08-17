@@ -3,7 +3,9 @@ from keras.models import Sequential
 from keras.optimizers import Adam
 from runner import GymRunner
 
-from dqn.qlearning_agent import QLearningAgent
+from qlearning_agent import QLearningAgent
+
+from polyaxon_helper import get_outputs_path
 
 
 class Agent(QLearningAgent):
