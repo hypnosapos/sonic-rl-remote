@@ -1,13 +1,23 @@
 # Sonic RL Agent
+[![License status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhypnosapos%2Fsonic-rl-remote.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhypnosapos%2Fsonic-rl-remote?ref=badge_shield)
+![We love OpenSource](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 
-Requirements for training models on Mac:
+Requirements to train models on Mac:
 
+ - python 3.5+
+ - Sonic rom file 
+ 
 ```sh
 $ brew install cmake openmpi lua51
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install -r requirements.txt
+$ cp rom.md .venv/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/rom.md
+$ python ppo/ppo_agent.py
+$ python dqn/qlearning_agent.py
 ```
 
 Train model by docker container on localhost:
-
 ```sh
 $ docker run -it -v <your_path>/rom.md:/usr/local/lib/python3.5/dist-packages/retro/data/SonicTheHedgehog-Genesis/rom.md \
   hypnosapos/sonic-rl-remote:latest python ppo/ppo_agent.py
@@ -15,7 +25,10 @@ $ docker run -it -v <your_path>/rom.md:/usr/local/lib/python3.5/dist-packages/re
 
 ## Training experiments within Polyaxon
 
-We should have a polyaxon installation on any kubernetes cluster.
+Requirements:
+
+ - We should have a polyaxon installation on any kubernetes cluster (you have and example at our carpole project).
+ - Put sonic rom file on this project directory.
 
 Run experiments with polyaxon:
 
